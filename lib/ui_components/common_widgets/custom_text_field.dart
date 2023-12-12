@@ -12,8 +12,14 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      
       controller: controller,
       decoration: InputDecoration(
+        error: const Text('category should not be empty') ,
+        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide: const BorderSide(
+          color: Colors.red,
+          width: 2
+        )),
         hintText: hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
