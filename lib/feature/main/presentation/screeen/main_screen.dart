@@ -1,19 +1,16 @@
-import 'package:finance_app/feature/category/presentation/bloc/category_bloc.dart';
 import 'package:finance_app/feature/main/presentation/widgets/category_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainPage extends StatefulWidget {
-  final List<String> categories;
-  final List<String> amountOfCategories;
-  const MainPage(
-      {super.key, required this.categories, required this.amountOfCategories});
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
+  final List<String> categories = [];
+  final List<String> amountOfCategories = [''];
   int foodTotalCost = 0;
   int travelTotalCost = 0;
   int transportTotalCost = 0;
@@ -28,71 +25,67 @@ class _MainPageState extends State<MainPage> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          BlocBuilder<CategoryBloc, CategoryState>(
-            builder: (context, state) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      CategoryWidget(
-                        width: width,
-                        height: height,
-                        name: 'food',
-                        backgoundColor: Colors.green,
-                        cost: foodTotalCost,
-                        onAccept: (data) {
-                          setState(() {
-                            foodTotalCost += data;
-                          });
-                        },
-                      ),
-                      CategoryWidget(
-                        width: width,
-                        height: height,
-                        name: 'transport',
-                        backgoundColor: Colors.blue,
-                        cost: transportTotalCost,
-                        onAccept: (data) {
-                          setState(() {
-                            transportTotalCost += data;
-                          });
-                        },
-                      ),
-                    ],
+                  CategoryWidget(
+                    width: width,
+                    height: height,
+                    name: 'food',
+                    backgoundColor: Colors.green,
+                    cost: foodTotalCost,
+                    onAccept: (data) {
+                      setState(() {
+                        foodTotalCost += data;
+                      });
+                    },
                   ),
-                  Row(
-                    children: [
-                      CategoryWidget(
-                        width: width,
-                        height: height,
-                        name: 'jym',
-                        backgoundColor: Colors.red,
-                        cost: jymTotalCost,
-                        onAccept: (data) {
-                          setState(() {
-                            jymTotalCost += data;
-                          });
-                        },
-                      ),
-                      CategoryWidget(
-                        width: width,
-                        height: height,
-                        name: 'travel',
-                        backgoundColor: Colors.yellow,
-                        cost: transportTotalCost,
-                        onAccept: (data) {
-                          setState(() {
-                            transportTotalCost += data;
-                          });
-                        },
-                      ),
-                    ],
+                  CategoryWidget(
+                    width: width,
+                    height: height,
+                    name: 'transport',
+                    backgoundColor: Colors.blue,
+                    cost: transportTotalCost,
+                    onAccept: (data) {
+                      setState(() {
+                        transportTotalCost += data;
+                      });
+                    },
                   ),
                 ],
-              );
-            },
+              ),
+              Row(
+                children: [
+                  CategoryWidget(
+                    width: width,
+                    height: height,
+                    name: 'jym',
+                    backgoundColor: Colors.red,
+                    cost: jymTotalCost,
+                    onAccept: (data) {
+                      setState(() {
+                        jymTotalCost += data;
+                      });
+                    },
+                  ),
+                  CategoryWidget(
+                    width: width,
+                    height: height,
+                    name: 'travel',
+                    backgoundColor: Colors.yellow,
+                    cost: transportTotalCost,
+                    onAccept: (data) {
+                      setState(() {
+                        transportTotalCost += data;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
           const Center(
             child: Draggable<int>(

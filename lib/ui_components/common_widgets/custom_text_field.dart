@@ -1,26 +1,41 @@
+import 'package:finance_app/ui_components/ui_kit.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
+  final String? hintText;
+  final String? errorMessage;
+  final TextInputType? keyBoardType;
+  final String? label;
+  final int? maxLines;
   const CustomTextField({
-    required this.hintText,
-    super.key,
+    this.hintText = '',
     required this.controller,
+    this.errorMessage = '',
+    this.keyBoardType,
+    this.label,
+    this.maxLines,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      
+      maxLines: maxLines,
       controller: controller,
+      cursorColor: AppColors.primaryColor,
       decoration: InputDecoration(
-        error: const Text('category should not be empty') ,
-        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide: const BorderSide(
-          color: Colors.red,
-          width: 2
-        )),
+        filled: true,
+        labelText: label,
+        labelStyle: AppTextTheme.bodyText3.copyWith(
+          color: AppColors.secondaryTextColor,
+        ),
+        fillColor: AppColors.lightGrey,
+        error: Text(errorMessage!),
         hintText: hintText,
+        hintStyle: AppTextTheme.bodyText3.copyWith(
+          color: AppColors.secondaryTextColor,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),

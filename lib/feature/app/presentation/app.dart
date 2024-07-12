@@ -1,5 +1,6 @@
-import 'package:finance_app/feature/app/presentation/bloc/multi_bloc_wrapper.dart';
-import 'package:finance_app/feature/category/presentation/screen/create_category_page.dart';
+import 'package:beamer/beamer.dart';
+import 'package:finance_app/core/di/dependecy_builder.dart';
+import 'package:finance_app/core/router/app_router.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -7,9 +8,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MultiBlocWrapper(
-        child: CreateCategoryPage(),
+    return DependecyBuilder(
+      child: MaterialApp.router(
+        routeInformationParser: BeamerParser(),
+        routerDelegate: routerDelegate,
       ),
     );
   }
