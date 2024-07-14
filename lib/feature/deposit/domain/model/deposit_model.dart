@@ -4,7 +4,7 @@ class DepositModel extends Model{
   final String name;
   final String description;
   final double amount;
-  final String id;
+  final int id;
   DepositModel({
     required this.name,
     required this.description,
